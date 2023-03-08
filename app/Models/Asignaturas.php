@@ -13,4 +13,6 @@ class Asignaturas extends Model
 
     protected $fillable = ['nombre'];
 
+
+
 }

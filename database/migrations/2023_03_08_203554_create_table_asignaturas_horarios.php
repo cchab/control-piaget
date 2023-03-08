@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('asignaturas_cargas', function (Blueprint $table) {
+        Schema::create('asignaturas_horarios', function (Blueprint $table) {
+            $table->integer('horario_id');
             $table->integer('asignatura_id');
-            $table->integer('carga_id');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asignaturas_cargas');
+        Schema::dropIfExists('table_asignaturas_horarios');
     }
 };

@@ -49,9 +49,9 @@
                 <td>{{$c->grados->numero}}</td>
                 <td>{{$c->niveles->nombre}}</td>
                 <td>{{$c->periodos->nombre}}</td>
-                <td>{{$c->asignaturas->nombre}}</td>
+                <td>{{$c->materias}}</td>
                 <td>{{$c->bimestres->numero}}</td>
-                <td>{{$c->alumnos->nombre}}</td>
+                <td>{{$c->alumnado}}</td>
                 <td>
                     <form action="/cargas/{{$c->id}}}" method="post">
                         @method('DELETE')
@@ -59,20 +59,20 @@
                         <a href="/cargas/{{$c->id}}/edit" class="btn btn-secondary"  style="padding: 2px 5px;  margin-right: 3px" title="Actualizar Registro">
                             <i class="mdi mdi-autorenew"></i>Actualizar
                         </a>
-        
+
                         <a class="btn btn-secondary" href="{{ route('carga.show',$c->id) }}"  style="padding: 2px 5px;  margin-right: 3px" title="Ver Detalles">
                             <i class="mdi mdi-account-card-details"></i>Ver</a>
-        
+
                         <button type="submit" class="btn btn-primary"  style="padding: 2px 5px;" title="Borrar docente">
                             <i class="mdi mdi-delete-sweep"></i>Borrar
                         </button>
-        
-        
+
+
                     </form>
             </tr>
             @endforeach
 
-        </tbody>    
+        </tbody>
 </hr>
 </table>
 

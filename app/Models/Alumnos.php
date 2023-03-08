@@ -11,9 +11,10 @@ class Alumnos extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nombre', 'primer_apellido','segundo_apellido','sexo','fecha_nacimiento','curp','edad','tipo_sangre','nivel','grado','grupo','periodo','nombre_tutor','parentesco','tutor_principal','direccion','colonia','telefono_contacto','nombre_emergencia','parentesco2','tel1_autorizada','foto_estudiante','profesor_id'
-
-
+        'nombre', 'primer_apellido','segundo_apellido','sexo','fecha_nacimiento',
+        'curp','edad','tipo_sangre','nivel','grado_id','grupo_id','periodo','nombre_tutor',
+        'parentesco','tutor_principal','direccion','colonia','telefono_contacto',
+        'nombre_emergencia','parentesco2','tel1_autorizada','foto_estudiante','profesor_id'
     ];
     protected $table = "alumnos";
     protected $primaryKey = "id";
@@ -23,18 +24,18 @@ class Alumnos extends Model
         return $this->hasMany('App\Pago');
     }
 
-    
-   
+
+
     public function grupos(): BelongsTo
     {
-        return $this->belongsTo(Grupos::class, 'grupo');
+        return $this->belongsTo(Grupos::class, 'grupo_id');
     }
 
 
 
     public function grados(): BelongsTo
     {
-        return $this->belongsTo(Grados::class, 'grado');
+        return $this->belongsTo(Grados::class, 'grado_id');
     }
 
     public function periodos(): BelongsTo
@@ -42,12 +43,12 @@ class Alumnos extends Model
         return $this->belongsTo(Periodos::class, 'periodo');
     }
 
-    
+
     public function niveles(): BelongsTo
     {
         return $this->belongsTo(Niveles::class, 'nivel');
     }
-    
+
 
 
 }

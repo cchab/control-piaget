@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 
@@ -87,7 +88,7 @@
 
             <h2 class="h5 mb-4">Información General</h2>
             <div class="col-md-4">
-                    
+
                     <label class="col-sm-6 col-form-label">Foto del Alumno</label>
                     <div class="col-sm-9">
                       <input type="file" name="foto_estudiante" class="form-control" />
@@ -182,7 +183,7 @@
 
                 <div class="col-md-4">
                     <label class="col-sm-12 col-form-label">Nivel escolar </label>
-                    <select name="nivel" class="form-control form-control-sm">
+                    <select name="nivel" class="form-select mb-0">
                     <option selected=>Seleccione</option>
                     @foreach ($Niveles as $n)
                     <option value="{{$n->id}}">{{$n->nombre}}</option>
@@ -190,12 +191,12 @@
                     </select>
                 </div>
 
-             
+
 
                 <div class="row">
                 <div class="col-md-4">
                     <label class="col-sm-6 col-form-label">Grado</label>
-                    <select name="grado" class="form-control form-control-sm">
+                    <select name="grado" class="form-select mb-0">
                         <option selected=>Seleccione</option>
                         @foreach ($Grados as $grados)
                         <option value="{{$grados->id}}">{{$grados->numero}}</option>
@@ -203,13 +204,13 @@
                     </select>
                 </div>
 
-                
+
 
 
 
                 <div class="col-md-4">
                     <label class="col-sm-12 col-form-label">Grupo</label>
-                    <select name="grupo" class="form-control form-control-sm">
+                    <select name="grupo" class="form-select mb-0">
                     <option selected=>Seleccione</option>
                     @foreach ($Grupos as $g)
                         <option value="{{$g->id}}">{{$g->letra}}</option>
@@ -217,11 +218,11 @@
                     </select>
                 </div>
 
-             
 
-               
 
-                
+
+
+
                 <div class="col-md-4">
                     <label class="col-sm-12 col-form-label">Periodo</label>
                     <select name="periodo" class="form-control form-control-sm">
@@ -229,7 +230,7 @@
                         @foreach ($Periodos as $p)
                             <option value="{{$p->id}}">{{$p->nombre}}</option>
                         @endforeach
-                            
+
                     </select>
                 </div>
 

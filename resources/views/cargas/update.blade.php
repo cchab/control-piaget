@@ -64,74 +64,7 @@
                       <input type="text" name="alumnos" class="form-control" value="{{ $carga->alumnos }}"/>
                     </div>
                 </div>
-                <!-- <div class="col-md-4">
-                    <label class="col-sm-6 col-form-label">Teléfono</label>
-                    <div class="col-sm-12">
-                      <input type="number" name="phone_alumno" class="form-control" value="{{ $alumno->phone_alumno }}"/>
-                    </div>
-                </div>
-            </div> 
-
-            <div class="row">
-              <div class="col-md-4">
-                <label class="col-sm-12 col-form-label">Edad del Alumno</label>
-                <div class="col-sm-12">
-                  <input type="number" name="edad_alumno" class="form-control" value="{{ $alumno->edad_alumno }}"/>
-                </div>
-              </div> 
-                <div class="col-md-4">
-                    <label class="col-sm-12 col-form-label">Dirección</label>
-                    <div class="col-sm-12">
-                      <input type="text" name="addres" class="form-control" value="{{ $alumno->addres }}"/>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <label class="col-sm-12 col-form-label">Asignar Curso</label>
-                    <select name="curso_id" class="form-control form-control-sm">
-                        @foreach ($cursos as $curso)
-
-                            @if ($curso->id ==$CursoAsignadoBD)
-                              <option value="{{ $curso->id }}" selected>{{ $curso->nombre_curso }}</option>
-                            @else
-                              <option value="{{ $curso->id }}">{{ $curso->nombre_curso }}</option>  
-                            @endif
-                       
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="row  mb-5 mt-3">
-              <div class="col-md-4">
-                <label class="col-sm-12 col-form-label">Asignar Sede</label>
-                <select name="profesor_id" class="form-control form-control-sm">
-                    <option value="">Seleccione</option>
-                    @foreach ($profesores as $profe)
-
-                        @if ($profe->id == $ProfeAsignadoBD)
-                          <option value="{{ $profe->id }}" selected> {{ $profe->nameFull }}</option>
-                        @else
-                          <option value="{{ $profe->id }}"> {{ $profe->nameFull }}</option>
-                        @endif
-                       
-                    @endforeach
-                </select>
-              </div>
-              <div class="col-md-2">
-                  <label for="exampleInputUsername1" style="text-align: center;">Foto actual</label>
-                  <br>
-                  @if ($alumno->foto_estudiante !=NULL)
-                      <img src="/fotosAlumnos/{{ $alumno->foto_estudiante }}" alt="foto profe" style="max-width: 100px; margin: 0 auto;">
-                  @else
-                      <img class="card-img-top" src="{{ asset('images/users.png') }}" alt="Foto-Profe" class="imgs" style="width:100px; margin: 0 auto;">
-                  @endif
-                  
-              </div>
-              <div class="col-md-2">
-                  <label for="exampleInputUsername1">Cambiar Foto</label>
-                  <input type="file" name="foto_estudiante" class="form-control">
-              </div>
-              <div class="col-md-4"> -->
+              
 
               
             </div>

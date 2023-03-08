@@ -14,7 +14,7 @@
             <li class="breadcrumb-item"><a href="#">Sección de Carga Academica</a></li>
             <li class="breadcrumb-item"><a href="#">Lista de cargas</a></li>
             <li class="breadcrumb-item active" aria-current="page">Detalles carga academica</li>
-            
+
         </ol>
     </nav>
 
@@ -32,46 +32,46 @@
         <div class="row">
             <div class="col-md-6">
             <div class="card" style="width: 30rem;">
-              
-                
+
+
                 <div class="card-body">
                 <p class="card-title"><strong>Grupo:</strong>
-                     {{ $carga->grupos->letra }} 
+                     {{ $carga->grupos->letra }}
                 </p>
 
 
-                <p class="card-title"><strong>Grado:</strong> 
-                    {{ $carga->grados->numero}} 
+                <p class="card-title"><strong>Grado:</strong>
+                    {{ $carga->grados->numero}}
                 </p>
 
 
-                <p class="card-title"><strong>Nivel:</strong> 
-                    {{ $carga->niveles->nombre}} 
+                <p class="card-title"><strong>Nivel:</strong>
+                    {{ $carga->niveles->nombre}}
                 </p>
 
 
-                <p class="card-title"><strong>Periodo:</strong> 
-                    {{ $carga->periodos->nombre }} 
-                </p>
-      
-
-                <p class="card-title"><strong>Asignatura:</strong> 
-                    {{ $carga->asignaturas->nombre }} 
+                <p class="card-title"><strong>Periodo:</strong>
+                    {{ $carga->periodos->nombre }}
                 </p>
 
 
-                <p class="card-title"><strong>Bimestre:</strong> 
-                    {{ $carga->bimestres->numero }} 
+                <p class="card-title"><strong>Asignatura:</strong>
+                    {{ $carga->materias }}
                 </p>
 
 
-                <p class="card-title"><strong>Alumnos:</strong> 
-                    {{ $carga->alumnos->nombre}} 
+                <p class="card-title"><strong>Bimestre:</strong>
+                    {{ $carga->bimestres->numero }}
                 </p>
 
-                
+
+                <p class="card-title"><strong>Alumnos:</strong>
+                    {{ $carga->alumnado}}
+                </p>
+
+
                 <div class="form-group float-right mt-3" style="float: right">
-                   
+
                     <a href="/cargas"  class="btn btn-primary btn-fw mb-3">Regresar</a>
                 </div>
 
@@ -79,5 +79,5 @@
             </div>
             </div>
 
-            
-@endsection 
+
+@endsection

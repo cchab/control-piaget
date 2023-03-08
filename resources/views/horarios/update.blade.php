@@ -14,146 +14,64 @@
             <div class="row">
 
                 <div class="col-md-4">
-                    <label class="col-sm-6 col-form-label">Nombre</label>
+                    <label class="col-sm-6 col-form-label">Grupo</label>
                     <div class="col-sm-12">
-                      <input type="text" name="name" class="form-control" value="{{ $horario->nombre}}" required/>
-                    </div>
-                </div>
-
-        <!--        <div class="col-md-4">
-                    <label class="col-sm-6 col-form-label">Aula</label>
-                    <div class="col-sm-12">
-                      <input type="text" name="fecha_naicmiento" class="form-control" value="{{ $horario->aula }}" />
+                      <input type="text" name="grupo" class="form-control" value="{{ $horario->grupo}}" required/>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                  <label class="col-sm-6 col-form-label">Edad</label>
+                  <label class="col-sm-6 col-form-label">Grado</label>
                   <div class="col-sm-12">
-                    <input type="number" name="edad" class="form-control" value="{{ $profesor->edad }}"/>
+                    <input type="number" name="grado" class="form-control" value="{{ $horario->grado}}" required/>
                   </div>
               </div>
-            </div>
 
-            <div class="row">
               <div class="col-md-4">
-                  <label class="col-sm-6 col-form-label">Genero</label>
-                  <div class="col-sm-12">
-                    <input type="text" name="genero" class="form-control"  value="{{ $profesor->genero }}"/>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <label class="col-sm-6 col-form-label">Correo electronico</label>
-                  <div class="col-sm-12">
-                    <input type="text" name="email" class="form-control" value="{{ $profesor->email }}"/>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <label class="col-sm-6 col-form-label">Telefono</label>
-                  <div class="col-sm-12">
-                    <input type="number" name="telefono" class="form-control"  value="{{ $profesor->telefono }}"/>
-                  </div>
+                <label class="col-sm-6 col-form-label">Aula</label>
+                <div class="col-sm-12">
+                  <input type="text" name="aula" class="form-control" value="{{ $horario->aula}}" required/>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+              <label class="col-sm-6 col-form-label">Dia</label>
+              <div class="col-sm-12">
+                <input type="date" name="dia" class="form-control" value="{{ $horario->dia}}" required/>
               </div>
           </div>
 
-            <div class="row">
-              <div class="col-md-4">
-                <label class="col-sm-6 col-form-label">Localidad</label>
-                <div class="col-sm-12">
-                  <input type="text" name="localidad" class="form-control" value="{{ $profesor->localidad }}"/>
-                </div>
+          <div class="col-md-4">
+            <label class="col-sm-6 col-form-label">Hora inicio</label>
+            <div class="col-sm-12">
+              <input type="time" name="hora" class="form-control" value="{{ $horario->hora}}" required/>
             </div>
-                <div class="col-md-4">
-                    <label class="col-sm-6 col-form-label">Domicilio</label>
-                    <div class="col-sm-12">
-                      <input type="text" name="domicilio" class="form-control" value="{{ $profesor->domicilio }}"/>
-                    </div>
-                </div>  -->
+        </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-                <!-- <div class="col-md-4">
-                    <label class="col-sm-6 col-form-label">Teléfono</label>
-                    <div class="col-sm-12">
-                      <input type="number" name="phone_alumno" class="form-control" value="{{ $alumno->phone_alumno }}"/>
-                    </div>
-                </div>
-            </div> 
-
-            <div class="row">
-              <div class="col-md-4">
-                <label class="col-sm-12 col-form-label">Edad del Alumno</label>
-                <div class="col-sm-12">
-                  <input type="number" name="edad_alumno" class="form-control" value="{{ $alumno->edad_alumno }}"/>
-                </div>
-              </div> 
-                <div class="col-md-4">
-                    <label class="col-sm-12 col-form-label">Dirección</label>
-                    <div class="col-sm-12">
-                      <input type="text" name="addres" class="form-control" value="{{ $alumno->addres }}"/>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <label class="col-sm-12 col-form-label">Asignar Curso</label>
-                    <select name="curso_id" class="form-control form-control-sm">
-                        @foreach ($cursos as $curso)
-
-                            @if ($curso->id ==$CursoAsignadoBD)
-                              <option value="{{ $curso->id }}" selected>{{ $curso->nombre_curso }}</option>
-                            @else
-                              <option value="{{ $curso->id }}">{{ $curso->nombre_curso }}</option>  
-                            @endif
-                       
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="row  mb-5 mt-3">
-              <div class="col-md-4">
-                <label class="col-sm-12 col-form-label">Asignar Sede</label>
-                <select name="profesor_id" class="form-control form-control-sm">
-                    <option value="">Seleccione</option>
-                    @foreach ($profesores as $profe)
-
-                        @if ($profe->id == $ProfeAsignadoBD)
-                          <option value="{{ $profe->id }}" selected> {{ $profe->nameFull }}</option>
-                        @else
-                          <option value="{{ $profe->id }}"> {{ $profe->nameFull }}</option>
-                        @endif
-                       
-                    @endforeach
-                </select>
-              </div>
-              <div class="col-md-2">
-                  <label for="exampleInputUsername1" style="text-align: center;">Foto actual</label>
-                  <br>
-                  @if ($alumno->foto_estudiante !=NULL)
-                      <img src="/fotosAlumnos/{{ $alumno->foto_estudiante }}" alt="foto profe" style="max-width: 100px; margin: 0 auto;">
-                  @else
-                      <img class="card-img-top" src="{{ asset('images/users.png') }}" alt="Foto-Profe" class="imgs" style="width:100px; margin: 0 auto;">
-                  @endif
-                  
-              </div>
-              <div class="col-md-2">
-                  <label for="exampleInputUsername1">Cambiar Foto</label>
-                  <input type="file" name="foto_estudiante" class="form-control">
-              </div>
-              <div class="col-md-4"> -->
-
-              
-            </div>
+        <div class="col-md-4">
+          <label class="col-sm-6 col-form-label">Hora fin</label>
+          <div class="col-sm-12">
+            <input type="time" name="hora_fin" class="form-control" value="{{ $horario->hora_fin}}" required/>
           </div>
+      </div>
+
+
+      <div class="col-md-4">
+        <label class="col-sm-6 col-form-label">Asignatura</label>
+        <div class="col-sm-12">
+          <input type="text" name="asignatura" class="form-control" value="{{ $horario->asignatura}}" required/>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <label class="col-sm-6 col-form-label">Docente</label>
+        <div class="col-sm-12">
+        <input type="text" name="docente" class="form-control" value="{{ $horario->profesor}}" required/>
+        </div>
+      </div>
+
+</div>
+</div>
 
             <div class="form-group text-center mt-5 mb-3">
                 <button type="submit" class="btn btn-primary mr-2 mb-3">Actualizar horario</button>

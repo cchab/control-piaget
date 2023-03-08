@@ -81,7 +81,7 @@
 <div class="form-group">
         <label for="exampleInputUsername1">Nivel Academico</label>
         <select name="nivel" class="form-control form-control-sm" >
-            <option value="" selected>{{$profesores->nivel}} </option>
+            <option value="{{$profesores->nivelacademico}}" selected hidden> {{$profesores->nivel}}</option>
             <option value="1">Licenciatura</option>
             <option value="2">Maestría</option>
             <option value="3">Doctorado</option>
@@ -141,7 +141,7 @@
 <div class="form-group">
         <label for="exampleInputUsername1">Tipo</label>
         <select name="tipo" class="form-control form-control-sm">
-            <option value="" selected>{{$profesores->tipo}}</option>         
+            <option value="{{$profesores->tipo_profesor}}" selected hidden>{{$profesores->tipo}}</option>         
             <option value="1">Asignaturas</option>
             <option value="2">Tiempo completo</option>
         </select>

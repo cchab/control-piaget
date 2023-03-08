@@ -4,12 +4,12 @@
 @section('content')
 <div class="container">
 
-    
+
 
 <div style="text-align:center; " >
-   
 
-  
+
+
 </div>
 </hr>
 
@@ -41,12 +41,13 @@
         <table class="table table-centered table-nowrap mb-0 rounded">
         <thead class="thead-light">
             <tr>
-                
+
             <th class="border-0 rounded-start">Grupo</th>
             <th class="border-0">Grado</th>
             <th class="border-0">Aula</th>
             <th class="border-0">Dia</th>
-            <th class="border-0">Hora</th>
+            <th class="border-0">Hora inicio</th>
+            <th class="border-0">Hora fin</th>
             <th class="border-0">Asignatura</th>
             <th class="border-0">Docente</th>
             <th class="border-0 rounded-end">Acción</th>
@@ -54,23 +55,25 @@
             </thead>
             <tbody>
     <tr>
-        
-    @foreach($Horarios as $h)
-  
-        <td>{{$h->grupo_id}}</td>
 
-        <td>{{$h->grado_id}}</td>
+    @foreach($Horarios as $h)
+
+        <td>{{$h->grupos->letra}}</td>
+
+        <td>{{$h->grados->numero}}</td>
 
         <td>{{$h->aula}}</td>
-     
-        <td>{{$h->dia}}</td>
+
+        <td>{{$h->diaS}}</td>
 
         <td>{{$h->hora}}</td>
 
-        <td>{{$h->asignatura_id}}</td>
+        <td>{{$h->hora_fin}}</td>
 
-        <td>{{$h->docente_id}}</td>
-        
+        <td>{{$h->materias}}</td>
+
+        <td>{{$h->profesores->nombre}}</td>
+
         <td>
             <form action="/profes/{{$h->id}}}" method="post">
                 @method('DELETE')
@@ -97,7 +100,7 @@
 
 
 </table>
-  
+
 </div>
 
 <div class="form-group float-right mt-3" style="float: right">

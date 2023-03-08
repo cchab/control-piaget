@@ -20,7 +20,7 @@ use App\Models\Niveles;
 
 class AlumnosController extends Controller
 {
-    
+
     public function index()
     {
         $alumnosTotal = Alumnos::all();
@@ -43,30 +43,30 @@ class AlumnosController extends Controller
         $niveles = Niveles::all();
 
         return view('alumnos.add', [
-            
-            
+
+
             'Periodos'=>$periodos,
             'Grupos'=>$grupos,
             'Grados'=>$grados,
             'Niveles'=>$niveles,
-           
-    
+
+
         ]);
 
-        
+
 
     }
 
-    
+
     public function store(Request $request)
     {
 
-       
+
 
         if ($request->hasFile('foto_estudiante')) {
-            $file = $request->file('foto_estudiante');  
-            $nombrearchivo = time()."_".$file->getClientOriginalName();  
-            $file->move(public_path('/fotosAlumnos/'),$nombrearchivo); 
+            $file = $request->file('foto_estudiante');
+            $nombrearchivo = time()."_".$file->getClientOriginalName();
+            $file->move(public_path('/fotosAlumnos/'),$nombrearchivo);
 
             $data = new Alumnos([
                 'nombre'=>$request->get('nombre'),
@@ -78,8 +78,8 @@ class AlumnosController extends Controller
                 'edad'=>$request->get('edad'),
                 'tipo_sangre'=>$request->get('tipo_sangre'),
                 'nivel'=>$request->get('nivel'),
-                'grado'=>$request->get('grado'),
-                'grupo'=>$request->get('grupo'),
+                'grado_id'=>$request->get('grado'),
+                'grupo_id'=>$request->get('grupo'),
                 'periodo'=>$request->get('periodo'),
                 'nombre_tutor'=>$request->get('nombre_tutor'),
                 'parentesco'=>$request->get('parentesco'),
@@ -92,10 +92,10 @@ class AlumnosController extends Controller
                 'tel1_autorizada'=>$request->get('tel1_autorizada'),
                 'foto_estudiante'=>$nombrearchivo,
                 'profesor_id'=>$request->get('profesor_id'),
-                 
+
 
             ]);
-            $data->save(); 
+            $data->save();
         }else{
             $data = new Alumnos([
                 'nombre'=>$request->get('nombre'),
@@ -107,8 +107,8 @@ class AlumnosController extends Controller
                 'edad'=>$request->get('edad'),
                 'tipo_sangre'=>$request->get('tipo_sangre'),
                 'nivel'=>$request->get('nivel'),
-                'grado'=>$request->get('grado'),
-                'grupo'=>$request->get('grupo'),
+                'grado_id'=>$request->get('grado'),
+                'grupo_id'=>$request->get('grupo'),
                 'periodo'=>$request->get('periodo'),
                'nombre_tutor'=>$request->get('nombre_tutor'),
                 'parentesco'=>$request->get('parentesco'),
@@ -121,50 +121,55 @@ class AlumnosController extends Controller
                 'tel1_autorizada'=>$request->get('tel1_autorizada'),
                 'foto_estudiante'=>$nombrearchivo,
                 'profesor_id'=>$request->get('profesor_id'),
-                 
-                 
+
+
             ]);
-            $data->save(); 
-        } 
+            $data->save();
+        }
 
         return redirect('/alumno')->with('mensaje','Alumno Registrado Correctamente.');
 
     }
 
-    
+
     public function show(Request $request, $id){
 
         $pagosCursoAlumno = Pagos::where('alumno_id',$id)->get();
         $verificarPago = $pagosCursoAlumno->count();
-   
+
         $pagosCursoAlumno = 0;
-        $alumno = Alumnos::findOrFail($id); 
+        $alumno = Alumnos::findOrFail($id);
         //dd($alumno->get());
         return view('alumnos.view', compact('alumno','pagosCursoAlumno'));
-        
-        
+
+
     }
-    
+
     public function edit($id){
 
         $alumno   = Alumnos::findOrFail($id);
         $cursos   = Cursos::get();
         $profesores = Profesores::orderBy('id','asc')->get();
+        $periodos = Periodos::all();
+        $grupos = Grupos::all();
+        $grados = Grados::all();
+        $niveles = Niveles::all();
 
         $CursoAsignadoBD = $alumno->curso_id;
         $ProfeAsignadoBD = $alumno->profesor_id;
 
-        return view('alumnos.update',compact('alumno','cursos','profesores','CursoAsignadoBD','ProfeAsignadoBD'));
+        return view('alumnos.update',compact('alumno','cursos',
+            'profesores','periodos','grupos','grados','niveles'));
     }
 
 
     public function update(Request $request, $id)
     {
-  
+
         if ($request->hasFile('foto_estudiante')) {
-            $file = $request->file('foto_estudiante');  
-            $nombrearchivo = time()."_".$file->getClientOriginalName();  
-            $file->move(public_path('/fotosAlumnos/'),$nombrearchivo); 
+            $file = $request->file('foto_estudiante');
+            $nombrearchivo = time()."_".$file->getClientOriginalName();
+            $file->move(public_path('/fotosAlumnos/'),$nombrearchivo);
 
             $alumno = Alumnos::findOrFail($id);
             $alumno->nombre                   = $request->nombre;
@@ -176,7 +181,8 @@ class AlumnosController extends Controller
             $alumno->edad                     = $request->edad;
             $alumno->tipo_sangre              = $request->tipo_sangre;
             $alumno->nivel                    = $request->nivel;
-            $alumno->grado                    = $request->grado;
+            $alumno->grado_id                 = $request->grado;
+            $alumno->grupo_id                 = $request->grupo;
             $alumno->periodo                  = $request->periodo;
             $alumno->nombre_tutor             = $request->nombre_tutor;
             $alumno->parentesco               = $request->parentesco;
@@ -189,7 +195,8 @@ class AlumnosController extends Controller
             $alumno->tel1_autorizada          = $request->tel1_autorizada;
             $alumno->curso_id                 = $request->curso_id;
             $alumno->profesor_id              = $request->profesor_id;
-            $alumno->save(); 
+            $alumno->foto_estudiante          = $nombrearchivo;
+            $alumno->save();
         }else{
             $alumno = Alumnos::findOrFail($id);
             $alumno->nombre                   = $request->nombre;
@@ -201,7 +208,8 @@ class AlumnosController extends Controller
             $alumno->edad                     = $request->edad;
             $alumno->tipo_sangre              = $request->tipo_sangre;
             $alumno->nivel                    = $request->nivel;
-            $alumno->grado                    = $request->grado;
+            $alumno->grado_id                    = $request->grado;
+            $alumno->grupo_id                    = $request->grupo;
             $alumno->periodo                  = $request->periodo;
             $alumno->nombre_tutor             = $request->nombre_tutor;
             $alumno->parentesco               = $request->parentesco;
@@ -214,8 +222,8 @@ class AlumnosController extends Controller
             $alumno->tel1_autorizada          = $request->tel1_autorizada;
             $alumno->curso_id                 = $request->curso_id;
             $alumno->profesor_id              = $request->profesor_id;
-            $alumno->save(); 
-        } 
+            $alumno->save();
+        }
 
             $updateAlumno ="Alumno actualizado Correctamente";
         return redirect('alumno/')->with(['updateAlumno' => $updateAlumno]);
@@ -227,15 +235,15 @@ class AlumnosController extends Controller
         $alumno = Alumnos::findOrFail($id);
         $alumno->delete();
         return redirect('/alumno')->with('mensaje', 'El alumno fue borrado correctamente.');
-    } 
+    }
 
 
     public function exportAlumnos()
     {
         $alumnos = Alumnos::all();
-        return view('exports.exportAlumnos', compact('alumnos'));     
+        return view('exports.exportAlumnos', compact('alumnos'));
     }
-    
+
 
 
 }

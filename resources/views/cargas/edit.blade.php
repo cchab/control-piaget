@@ -18,7 +18,7 @@
 
 <div style="text-align:center; " >
 
-  
+
 </div>
 
 <hr>
@@ -33,8 +33,12 @@
             @csrf
             <div class="form-group">
                 <label for="name" class="control-label">Grupo</label>
-                    <input type="text" name="grupo" id="grupos" class="form-control" value="{{$cargas->grupos->letra}}">
-
+                    <select name="grupo" class="form-select mb-0">
+                        <option selected=>Seleccione</option>
+                        @foreach ($grupos as $g)
+                            <option value="{{$g->id}}" @if($g->id==$cargas->grupos->id) selected @endif>{{$g->letra}}</option>
+                        @endforeach
+                    </select>
                     @if ($errors->has('grupos'))
                 <div class="alert alert-danger">
                     <span class="text-danger">{{ $errors->first('grupos') }}</span>
@@ -43,8 +47,12 @@
 
                 <div class="form-group">
                     <label for="exampleInputUsername1">Grado</label>
-                        <input type="number" name="grado" class="form-control" value="{{$cargas->grado}}" required>
-                       
+                        <select name="grado" class="form-select mb-0">
+                            <option selected=>Seleccione</option>
+                            @foreach ($grados as $grado)
+                                <option value="{{$grado->id}}" @if($grado->id==$cargas->grados->id) selected @endif>{{$grado->numero}}</option>
+                            @endforeach
+                        </select>
                         @if ($errors->has('grado'))
                         <div class="alert alert-danger">
                             <span class="text-danger">{{ $errors->first('fecha_grado') }}</span>
@@ -54,12 +62,16 @@
 
 
 
-           
+
 
             <div class="form-group">
             <label for="exampleInputUsername1">Nivel</label>
-                <input type="number" name="nivel" class="form-control" value="{{$cargas->nivel}}" required>
-               
+                <select name="nivel" class="form-select mb-0">
+                    <option selected=>Seleccione</option>
+                    @foreach ($niveles as $n)
+                        <option value="{{$n->id}}" @if($n->id==$cargas->niveles->id) selected @endif>{{$n->nombre}}</option>
+                    @endforeach
+                </select>
                 @if ($errors->has('nivel'))
                 <div class="alert alert-danger">
                     <span class="text-danger">{{ $errors->first('nivel') }}</span>
@@ -70,7 +82,7 @@
             <div class="form-group">
                 <label for="exampleInputUsername1">Periodo</label>
                     <input type="text" name="periodo" class="form-control" value="{{$cargas->periodo}}" required>
-                   
+
                     @if ($errors->has('periodo'))
                     <div class="alert alert-danger">
                         <span class="text-danger">{{ $errors->first('periodo') }}</span>
@@ -83,9 +95,28 @@
 
                     <div class="form-group">
                         <label for="exampleInputUsername1">Asignatura</label>
-                            <input type="text" name="asignatura" class="form-control" value="{{$cargas->asignaturas->nombre}}" required>
-                           
-                            @if ($errors->has('asignaturas'))
+                            <select name="asignaturas[]" id="asignaturas"  class="selectpicker  form-control"
+                                title="Seleccionar asignaturas" multiple required>
+
+
+                                @foreach ($asignaturas as $a)
+                                    @php
+                                        $selected = false;
+                                    @endphp
+                                    @foreach($cargas->asignaturas as $as)
+                                        @if($as->id==$a->id)
+                                            <option value="{{$a->id}}"  selected >{{$a->nombre}}</option>
+                                            @php
+                                                $selected = true;
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                    @if(!$selected)
+                                        <option value="{{$a->id}}" >{{$a->nombre}}</option>
+                                    @endif
+                                @endforeach
+                        </select>
+                            @if ($errors->has('asignatura'))
                             <div class="alert alert-danger">
                                 <span class="text-danger">{{ $errors->first('asignaturas') }}</span>
                             </div>
@@ -95,7 +126,7 @@
                         <div class="form-group">
                             <label for="exampleInputUsername1">Bimestre</label>
                                 <input type="text" name="bimestre" class="form-control" value="{{$cargas->bimestre}}" required>
-                               
+
                                 @if ($errors->has('bimestre'))
                                 <div class="alert alert-danger">
                                     <span class="text-danger">{{ $errors->first('bimestre') }}</span>
@@ -106,8 +137,25 @@
 
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Alumnos</label>
-                                    <input type="text" name="alumnos" class="form-control" value="{{$cargas->alumnos->nombre}}" required>
-                                   
+                                <select name="alumnos[]" id="alumnos"  class="selectpicker  form-control"
+                                        title="Seleccionar asignaturas" multiple required>
+                                    @foreach ($alumnos as $a)
+                                        @php
+                                            $selected = false;
+                                        @endphp
+                                        @foreach($cargas->alumnos as $al)
+                                            @if($al->id==$a->id)
+                                                <option value="{{$a->id}}"  selected >{{$a->nombre}}</option>
+                                                @php
+                                                    $selected = true;
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                        @if(!$selected)
+                                            <option value="{{$a->id}}" >{{$a->nombre}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
                                     @if ($errors->has('alumnos'))
                                     <div class="alert alert-danger">
                                         <span class="text-danger">{{ $errors->first('alumnos') }}</span>
@@ -121,11 +169,11 @@
                                     <a href="/cargas/17/edit"  class="btn btn-primary btn-fw mb-3">Cancelar</a>
                                     <a href="/cargas"  class="btn btn-primary btn-fw mb-3">Regresar</a>
                                 </div>
-    
+
         </form>
         </div>
     </div>
-</div> 
+</div>
 
 </hr>
 </table>

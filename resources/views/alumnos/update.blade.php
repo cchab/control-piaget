@@ -19,7 +19,7 @@
                                 Message
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="#">
-                                <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z"></path><path d="M9 13h2v5a1 1 0 11-2 0v-5z"></path></svg>                            
+                                <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z"></path><path d="M9 13h2v5a1 1 0 11-2 0v-5z"></path></svg>
                                 Product
                             </a>
                             <div role="separator" class="dropdown-divider my-1"></div>
@@ -45,7 +45,7 @@
                             Products
                         </a>
                         <a class="dropdown-item d-flex align-items-center" href="#">
-                            <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path></svg>                            
+                            <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path></svg>
                             Customers
                         </a>
                         <a class="dropdown-item d-flex align-items-center" href="#">
@@ -100,7 +100,7 @@
                   @else
                       <img class="card-img-top" src="{{ asset('images/users.png') }}" alt="Foto-Profe" class="imgs" style="width:100px; margin: 0 auto;">
                   @endif
-                  
+
               </div>
               <div class="col-md-2">
                   <label for="exampleInputUsername1">Cambiar Foto</label>
@@ -130,9 +130,11 @@
             <div class="row">
               <div class="col-md-4">
                   <label class="col-sm-6 col-form-label">Genero</label>
-                  <div class="col-sm-12">
-                    <input type="text" name="sexo" class="form-control"  value="{{ $alumno->sexo}}"/>
-                  </div>
+                  <select name="sexo" class="form-select mb-0">
+                      <option option="">Seleccione</option>
+                      <option @if($alumno->sexo=='Masculino') selected @endif>Masculino</option>
+                      <option @if($alumno->sexo=='Femenino') selected @endif>Femenino</option>
+                  </select>
               </div>
 
               <div class="col-md-4">
@@ -141,11 +143,11 @@
                   <span class="input-group-text">
                        <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                   </span>
-                    <input type="text" name="fecha_nacimiento" class="form-control" value="{{ $alumno->fecha_nacimiento}}"/>
+                    <input data-datepicker="" type="text" name="fecha_nacimiento" class="form-control" value="{{ $alumno->fecha_nacimiento}}" placeholder="dd/mm/yyyy"  required/>
                   </div>
               </div>
 
-              
+
 
               <div class="col-md-4">
                   <label class="col-sm-6 col-form-label">CURP</label>
@@ -164,37 +166,59 @@
             </div>
                 <div class="col-md-4">
                     <label class="col-sm-6 col-form-label">Tipo de sangre</label>
-                    <div class="col-sm-12">
-                      <input type="text" name="tipo_sangre" class="form-control" value="{{ $alumno->tipo_sangre }}"/>
-                    </div>
+
+                    <select name="tipo_sangre" class="form-select mb-0">
+                        <option selected=>Seleccione</option>
+                        <option @if($alumno->tipo_sangre=='A+') selected @endif>A+</option>
+                        <option @if($alumno->tipo_sangre=='A-') selected @endif>A-</option>
+                        <option @if($alumno->tipo_sangre=='B+') selected @endif>B+</option>
+                        <option @if($alumno->tipo_sangre=='B-') selected @endif>B-</option>
+                        <option @if($alumno->tipo_sangre=='AB+') selected @endif>AB+</option>
+                        <option @if($alumno->tipo_sangre=='AB-') selected @endif>AB-</option>
+                        <option @if($alumno->tipo_sangre=='O+') selected @endif>O+</option>
+                        <option @if($alumno->tipo_sangre=='O-') selected @endif>O-</option>
+                    </select>
                 </div>
                 <div class="col-md-4">
                     <label class="col-sm-6 col-form-label">Nivel escolar</label>
-                    <div class="col-sm-12">
-                      <input type="text" name="nivel" class="form-control" value="{{ $alumno->niveles->nombre}}"/>
-                    </div>
+                    <select name="nivel" class="form-select mb-0">
+                        <option selected=>Seleccione</option>
+                        @foreach ($niveles as $n)
+                            <option value="{{$n->id}}" @if($n->id==$alumno->niveles->id) selected @endif>{{$n->nombre}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 
             <div class="row">
               <div class="col-md-4">
                 <label class="col-sm-12 col-form-label">Grado</label>
-                <div class="col-sm-12">
-                  <input type="text" name="grado" class="form-control" value="{{ $alumno->grados->numero }}"/>
-                </div>
+                  <select name="grado" class="form-select mb-0">
+                      <option selected=>Seleccione</option>
+                      @foreach ($grados as $grado)
+                          <option value="{{$grado->id}}" @if($grado->id==$alumno->grados->id) selected @endif>{{$grado->numero}}</option>
+                      @endforeach
+                  </select>
               </div>
                 <div class="col-md-4">
                     <label class="col-sm-12 col-form-label">Grupo</label>
-                    <div class="col-sm-12">
-                      <input type="text" name="grupo" class="form-control" value="{{ $alumno->grupos->letra }}"/>
-                    </div>
+                    <select name="grupo" class="form-select mb-0">
+                        <option selected=>Seleccione</option>
+                        @foreach ($grupos as $g)
+                            <option value="{{$g->id}}" @if($g->id==$alumno->grupos->id) selected @endif>{{$g->letra}}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="col-md-4">
                     <label class="col-sm-12 col-form-label">Periodo escolar</label>
-                    <div class="col-sm-12">
-                      <input type="text" name="periodo" class="form-control" value="{{ $alumno->periodos->nombre }}"/>
-                    </div>
+                    <select name="periodo" class="form-select mb-0">
+                        <option selected=>Seleccione</option>
+                        @foreach ($periodos as $p)
+                            <option value="{{$p->id}}" @if($p->id==$alumno->periodos->id) selected @endif>{{$p->nombre}}</option>
+                        @endforeach
+
+                    </select>
                 </div>
 
                 <h2 class="h5 my-4">Datos del tutor</h2>
@@ -205,7 +229,7 @@
                       <input type="text" name="nombre_tutor" class="form-control" value="{{ $alumno->nombre_tutor }}"/>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4">
                     <label class="col-sm-12 col-form-label">Parentesco</label>
                     <div class="col-sm-12">
@@ -263,14 +287,14 @@
                 </div>
 
 
-                
-             
+
+
 
                 <div class="form-group float-right mt-3" style="float: right">
                 <button type="submit" class="btn btn-secondary mr-2 mb-3">Actualizar datos del alumno</button>
                 <a href="/"  class="btn btn-primary btn-fw mb-3">Cancelar</a>
             </div>
-            
+
         </form>
         </div>
     </div>

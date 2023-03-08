@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('asignaturas_cargas', function (Blueprint $table) {
-            $table->integer('asignatura_id');
-            $table->integer('carga_id');
-            $table->timestamps();
+        Schema::table('horarios', function(Blueprint $table) {
+        
+
+            $table-> time('hora_fin');
+        
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asignaturas_cargas');
+        //
     }
 };

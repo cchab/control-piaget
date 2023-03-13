@@ -75,20 +75,19 @@
         <td>{{$h->profesores->nombre}}</td>
 
         <td>
-            <form action="/profes/{{$h->id}}}" method="post">
+            <form action="/horarios/{{$h->id}}}" method="post">
                 @method('DELETE')
                 @csrf
-                <a href="/profes/{{$h->id}}/edit" class="btn btn-secondary"  style="padding: 2px 5px;  margin-right: 3px" title="Actualizar Registro">
+                <a href="/horarios/{{$h->id}}/edit" class="btn btn-secondary"  style="padding: 2px 5px;  margin-right: 3px" title="Actualizar Registro">
                     <i class="mdi mdi-autorenew"></i>Actualizar
                 </a>
 
-                <a class="btn btn-secondary" href="{{ route('profe.show',$h->id) }}"  style="padding: 2px 5px;  margin-right: 3px" title="Ver Detalles">
+                <a class="btn btn-secondary" href="{{ route('horario.show',$h->id) }}"  style="padding: 2px 5px;  margin-right: 3px" title="Ver Detalles">
                     <i class="mdi mdi-account-card-details"></i>Ver</a>
 
-                <button type="submit" class="btn btn-primary"  style="padding: 2px 5px;" title="Borrar docente">
+                <button type="submit" class="btn btn-primary"  style="padding: 2px 5px;" title="Borrar horario">
                     <i class="mdi mdi-delete-sweep"></i>Borrar
                 </button>
-
 
             </form>
     </tr>

@@ -29,7 +29,8 @@
         <table class="table table-centered table-nowrap mb-0 rounded">
         <thead class="thead-light">
             <tr>
-            <th class="border-0 rounded-start">Nombre del alumno</th>
+            <th class="border-0 rounded-start">Matrícula</th>
+            <th class="border-0">Nombre del alumno</th>
             <th class="border-0">Tutor</th>
             <th class="border-0">Teléfono </th>
 
@@ -44,7 +45,7 @@
             <tr>
 
             @foreach ($alumnos as $alumno)
-
+                <td>{{ $alumno->id }}</td>
                 <td>{{ $alumno->nombre }}</td>
                 <td>{{ $alumno->nombre_tutor }}</td>
                 <td>{{ $alumno->telefono_contacto}}</td>

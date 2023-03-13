@@ -316,7 +316,7 @@
 
             <div class="form-group float-right mt-3" style="float: right">
                 <button type="submit" class="btn btn-secondary mr-2 mb-3">Registrar</button>
-                <a href="/"  class="btn btn-primary btn-fw mb-3">Cancelar</a>
+                <a href="/alumno/create"  class="btn btn-primary btn-fw mb-3">Cancelar</a>
             </div>
 
         </form>

@@ -2,6 +2,12 @@
 
 @section('content')
 
+<style>
+    .bootstrap-select .btn{
+        border: 0.0625rem solid #D1D5DB;
+    }
+</style>
+
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -31,27 +37,35 @@
         <form method="post" action="/horarios/{{$horarios->id}}" class="form-horizontal" enctype="multipart/form-data">
         @method('PUT')
             @csrf
+
             <div class="form-group">
                 <label for="name" class="control-label">Grupo</label>
-                    <input type="number" name="grupo" id="grupo" class="form-control" value="{{$horarios->grupo_id}}">
-
-                    @if ($errors->has('grupo'))
+                    <select name="grupo" class="form-select mb-0">
+                        <option selected=>Seleccione</option>
+                        @foreach ($grupos as $g)
+                            <option value="{{$g->id}}" @if($g->id==$horarios->grupos->id) selected @endif>{{$g->letra}}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('grupos'))
                 <div class="alert alert-danger">
-                    <span class="text-danger">{{ $errors->first('grupo') }}</span>
+                    <span class="text-danger">{{ $errors->first('grupos') }}</span>
                 </div>
                 @endif
-            </div>
 
 
             <div class="form-group">
-                <label for="exampleInputUsername1">Grado</label>
-                <input type="text" name="grado" class="form-control" value="{{$horarios->grado_id}}" required>
-                       
-                @if ($errors->has('grado'))
-                <div class="alert alert-danger">
-                <span class="text-danger">{{ $errors->first('grado') }}</span>
-                </div>
-                @endif
+                    <label for="exampleInputUsername1">Grado</label>
+                        <select name="grado" class="form-select mb-0">
+                    <option selected=>Seleccione</option>
+                     @foreach ($grados as $grado)
+                        <option value="{{$grado->id}}" @if($grado->id==$horarios->grados->id) selected @endif>{{$grado->numero}}</option>
+                    @endforeach
+                    </select>
+                    @if ($errors->has('grado'))
+                    <div class="alert alert-danger">
+                    <span class="text-danger">{{ $errors->first('fecha_grado') }}</span>
+                    </div>
+                    @endif
             </div>
 
 
@@ -70,14 +84,22 @@
 
             <div class="form-group">
             <label for="exampleInputUsername1">Dia</label>
-                <input type="date" name="dia" class="form-control" value="{{$horarios->dia}}" required>
-               
+            <select name="dia" class="form-control form-control-sm">
+                <option value="{{$horarios->diaS}}" selected hidden>{{$horarios->diaS}}</option>
+                    <option value="1">Lunes</option>
+                    <option value="2">Martes</option>
+                    <option value="3">Miércoles</option>
+                    <option value="4">Jueves</option>
+                    <option value="5">Viernes</option>
+                    <option value="6">Sábado</option>
+            </select>
                 @if ($errors->has('dia'))
                 <div class="alert alert-danger">
                     <span class="text-danger">{{ $errors->first('dia') }}</span>
                 </div>
                 @endif
             </div>
+
 
             <div class="form-group">
                 <label for="exampleInputUsername1">Hora inicio</label>
@@ -104,18 +126,39 @@
 
                 <div class="form-group">
                     <label for="exampleInputUsername1">Asignatura</label>
-                        <input type="text" name="asignatura" class="form-control" value="{{$horarios->asignatura_id}}" required>
-                       
+                        <select name="asignaturas[]" id="asignaturas"  class="selectpicker  form-control"
+                            title="Seleccionar asignaturas" multiple required>
+
+
+                            @foreach ($asignaturas as $a)
+                                @php
+                                    $selected = false;
+                                @endphp
+                                @foreach($horarios->asignaturas as $as)
+                                    @if($as->id==$a->id)
+                                        <option value="{{$a->id}}"  selected >{{$a->nombre}}</option>
+                                        @php
+                                            $selected = true;
+                                        @endphp
+                                    @endif
+                                @endforeach
+                                @if(!$selected)
+                                    <option value="{{$a->id}}" >{{$a->nombre}}</option>
+                                @endif
+                            @endforeach
+                    </select>
                         @if ($errors->has('asignatura'))
                         <div class="alert alert-danger">
-                            <span class="text-danger">{{ $errors->first('asignatura') }}</span>
+                            <span class="text-danger">{{ $errors->first('asignaturas') }}</span>
                         </div>
                         @endif
                     </div>
 
+
+                    
                     <div class="form-group">
                         <label for="exampleInputUsername1">Docente</label>
-                            <input type="text" name="profesor" class="form-control" value="{{$horarios->profesores}}" required>
+                            <input type="text" name="profesor" class="form-control" value="{{$horarios->profesores->nombre}}" required>
                            
                             @if ($errors->has('profesor'))
                             <div class="alert alert-danger">

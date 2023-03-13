@@ -43,6 +43,19 @@ class HorariosController extends Controller
 
     }
 
+
+    public function show(Request $request, $id){
+
+      
+        $Horarios = Horarios::where('id', $id)->first();
+        return view('horarios.view')->with('horarios', $Horarios);
+        
+        
+    }
+
+
+
+
     public function store(Request $request)
     {
 
@@ -76,26 +89,47 @@ class HorariosController extends Controller
 
 
     public function edit($id){
+        $grupos = Grupos::all();
+        $grados = Grados::all();
+        $asignaturas = Asignaturas::all();
+        $profesores = Profesores::all();
 
-     $Horarios= Horarios::find($id);
+     $Horarios= Horarios::where('id', $id)->with('grupos')->with('grados')
+     ->with('asignaturas')->with('profesores')->first();
 
-        return view('horarios.edit',['horarios'=>$Horarios]);
+        return view('horarios.edit',['horarios'=>$Horarios,
+        'grupos' => $grupos,
+        'grados' => $grados,
+        'asignaturas' => $asignaturas,
+        'profesores' => $profesores
+    
+    ]);
     }
 
 
     public function update(Request $request, $id)
     {
+       
+        
+        $asignaturas = Asignaturas::whereIn('id',$request->get('asignaturas'))->get();
+            
+        
+        $horario = Horarios::findOrFail($id);
+         
 
-            $horario = Horarios::findOrFail($id);
-
-            $horario->nombre                    = $request->nombre;
-            $horario->aula                      = $request->aula;
+            $horario->grupo_id             =$request->grupo;
+            $horario->grado_id             =$request->grado;
+            $horario->aula                  = $request->aula;
             $horario->dia                  = $request->dia;
             $horario->hora                  = $request->hora;
-            $horario->asignatura                  = $request->asignatura;
-            $horario->profesor                  = $request->profesor;
+            $horario->hora_fin              = $request->hora_fin;
+            $horario->docente_id            = $request->profesores;
 
             $horario->save();
+         
+            $horario->asignaturas()->detach();
+            $horario->asignaturas()->attach($asignaturas);
+           
 
 
             $updateHorario ="Horario actualizado Correctamente";

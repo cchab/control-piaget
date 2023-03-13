@@ -24,9 +24,14 @@ class PagosController extends Controller
            
             $alumnos = null;
             if(isset($nombre)){
-                $alumnos= Alumnos::where('nombre', $nombre)->get()->pluck('id');
+                $alumnos= Alumnos::where('nombre','LIKE',"%{$nombre}%")->get()->pluck('id');
+                if($alumnos->toArray() ==null){
+                  
+                $pago= Pago::where('alumno_id',-1)->get();
+                }else{
                 $pago= Pago::where('alumno_id',$alumnos)->get();
-            
+                }
+                
             }else if(isset($id))
             {
                 $pago= Pago::where('alumno_id',$id)->get();

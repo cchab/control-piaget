@@ -187,11 +187,11 @@ class ComposerStaticInit87f3468faab4b301633cf1772dabfc26
         ),
         'Yajra\\DataTables\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
-            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
             2 => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src',
-            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
-            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
         ),
         'Whoops\\' => 
         array (
@@ -359,8 +359,8 @@ class ComposerStaticInit87f3468faab4b301633cf1772dabfc26
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -583,6 +583,7 @@ class ComposerStaticInit87f3468faab4b301633cf1772dabfc26
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Models\\Alumnos' => __DIR__ . '/../..' . '/app/Models/Alumnos.php',
         'App\\Models\\Asignaturas' => __DIR__ . '/../..' . '/app/Models/Asignaturas.php',
+        'App\\Models\\Bimestres' => __DIR__ . '/../..' . '/app/Models/Bimestres.php',
         'App\\Models\\Cargas' => __DIR__ . '/../..' . '/app/Models/Cargas.php',
         'App\\Models\\Conceptos' => __DIR__ . '/../..' . '/app/Models/Conceptos.php',
         'App\\Models\\Cursos' => __DIR__ . '/../..' . '/app/Models/Cursos.php',
@@ -590,6 +591,7 @@ class ComposerStaticInit87f3468faab4b301633cf1772dabfc26
         'App\\Models\\Grados' => __DIR__ . '/../..' . '/app/Models/Grados.php',
         'App\\Models\\Grupos' => __DIR__ . '/../..' . '/app/Models/Grupos.php',
         'App\\Models\\Horarios' => __DIR__ . '/../..' . '/app/Models/Horarios.php',
+        'App\\Models\\Nivelacademico' => __DIR__ . '/../..' . '/app/Models/Nivelacademico.php',
         'App\\Models\\Niveles' => __DIR__ . '/../..' . '/app/Models/Niveles.php',
         'App\\Models\\Pago' => __DIR__ . '/../..' . '/app/Models/Pago.php',
         'App\\Models\\Pagos' => __DIR__ . '/../..' . '/app/Models/Pagos.php',
